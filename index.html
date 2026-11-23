@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Train ticket opening tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <div>
+        <h1>Train ticket opening tracker</h1>
+        <p class="intro">Add a journey date and see exactly when booking opens, and how long you have to wait.</p>
+      </div>
+      <button type="button" id="theme-button" class="small-button"></button>
+    </header>
+
+    <section class="tracker-column">
+      <form id="add-train-form" autocomplete="off">
+        <div class="fields">
+          <label>Train name or number
+            <input id="train-name" required placeholder="12627 Karnataka Express">
+          </label>
+          <label>Route (optional)
+            <input id="route" placeholder="Chennai → Bengaluru">
+          </label>
+          <label>Journey date
+            <input id="journey-date" type="date" required>
+          </label>
+          <label>Booking window (days)
+            <input id="booking-window" type="number" min="1" max="365" value="60" required>
+          </label>
+        </div>
+
+        <div id="preview" class="preview" aria-live="polite" hidden></div>
+
+        <div class="row">
+          <button type="submit" class="main-button">Add train</button>
+          <span class="hint">Booking opens on the journey date minus the window (60 days for most trains).</span>
+        </div>
+      </form>
+
+      <h2>Your trains</h2>
+      <ul id="train-list"></ul>
+    </section>
+
+    <section class="difference-column">
+      <h2>Date difference</h2>
+      <div class="panel">
+        <div class="fields">
+          <label>From
+            <input id="start-date" type="date">
+          </label>
+          <label>To
+            <input id="end-date" type="date">
+          </label>
+        </div>
+        <div class="row">
+          <button type="button" id="today-button" class="small-button">From today</button>
+          <span class="error" id="difference-error" role="alert"></span>
+        </div>
+        <div id="difference-result" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
